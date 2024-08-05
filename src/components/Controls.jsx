@@ -1,38 +1,34 @@
 import React, { useRef } from "react";
 import { useDispatch } from "react-redux";
+import { counterActions } from "../store/Counter";
+import { privacyActions } from "../store/privacy";
 
 function Controls() {
   const inputElement = useRef("");
   const dispatch = useDispatch();
 
   const handleIncrement = () => {
-  //  console.log("+1 clicked");
-    dispatch({ type: "INCREMENT" });
+   // console.log("+1 clicked",counterActions.increment());
+    dispatch(counterActions.increment());
+   
   };
   const handleDecrement = () => {
-   // console.log("-1 clicked");
-    dispatch({ type: "DECREMENT" });
+  // console.log("-1 clicked");
+   dispatch(counterActions.decrement());
   };
   const handleToggle=()=>{
-   // console.log("Toggle clicked")
-    dispatch({type:"PRIVACY_TOGGLE"})
+    //console.log("Toggle clicked")
+    dispatch(privacyActions.toggle());
   }
   const handleAddition = () => {
  //   console.log("Add clicked");
  //   console.log(inputElement.current.value);
-    dispatch({
-      type: "ADDITION",
-      payload: { num: inputElement.current.value },
-    });
+    dispatch(counterActions.add( inputElement.current.value))
     inputElement.current.value = "";
   };
   const handleSubtract = () => {
  //   console.log("SUBTRACT clicked");
- //   console.log(inputElement.current.value);
-    dispatch({
-      type: "SUBTRACT",
-      payload: { num: inputElement.current.value },
-    });
+    dispatch(counterActions.subtract( inputElement.current.value))
     inputElement.current.value = "";
   };
   return (

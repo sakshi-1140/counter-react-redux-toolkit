@@ -14,6 +14,7 @@ function App() {
       <Container>
         <Header />
         <div className="col-lg-6 mx-auto">
+          
          {privacy ? <PrivacyMessage/> :<DisplayCounter />}
           <Controls />
         </div>
